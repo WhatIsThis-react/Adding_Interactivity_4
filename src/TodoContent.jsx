@@ -13,15 +13,15 @@ function TodoList({
   onChangeTodo,
   onDeleteTodo
 }) {
-  const [highlightedTodo, setHighlightedTodo] = useState(null);
+  const [highlightedTodoId, setHighlightedTodoId] = useState(null);
 
-  function handleHover(todo) {
-    setHighlightedTodo(todo);
+  function handleHover(todoId) {
+    setHighlightedTodoId(todoId);
   }
 
-  function handleStar(starredTodo) {
+  function handleStar(starredTodoId) {
     setTodos(todos.map(prevTodo => {
-      if (prevTodo.id === starredTodo.id) {
+      if (prevTodo.id === starredTodoId) {
         return {
           ...prevTodo,
           isStarred: !prevTodo.isStarred
@@ -39,7 +39,7 @@ function TodoList({
           todo={todo}
           onChangeTodo={onChangeTodo}
           onDeleteTodo={onDeleteTodo}
-          isHighlighted={highlightedTodo === todo}
+          isHighlighted={highlightedTodoId === todo.id}
           onHover={handleHover}
           onToggleStar={handleStar}
         />
@@ -55,8 +55,8 @@ function TodoItem({todo, isHighlighted, onHover, onToggleStar, onChangeTodo, onD
       className={
         isHighlighted ? 'highlighted' : ''
       }
-      onFocus={() => {onHover(todo)}}
-      onPointerMove={() => {onHover(todo)}}
+      onFocus={() => {onHover(todo.id)}}
+      onPointerMove={() => {onHover(todo.id)}}
       >
     <label>
       <input
@@ -72,7 +72,7 @@ function TodoItem({todo, isHighlighted, onHover, onToggleStar, onChangeTodo, onD
       {' '}
       {todo.title}
     </label>
-    <button onClick={() => onToggleStar(todo)}> 
+    <button onClick={() => onToggleStar(todo.id)}> 
       {todo.isStarred ? '★' : '☆'}
     </button>
     <button onClick={() => onDeleteTodo(todo.id)}>
@@ -88,11 +88,11 @@ function TodoItem({todo, isHighlighted, onHover, onToggleStar, onChangeTodo, onD
 // 힌트: 필요 없는 state는 제거하고, 필요한 값은 바로 사용하세요.
 export default function TodoContent() {
   const [todos, setTodos] = useState(initialTodos);
-  const [total, setTotal] = useState(initialTodos.length);
-  const [doneCount, setDoneCount] = useState(0);
+  
+  const total = todos.length;
+  const doneCount = todos.filter(todo => todo.isDone).length;
 
   function handleAddTodo(title) {
-    setTotal(total + 1);
     setTodos([
       ...todos,
       { id: initialTodos.length++, title: title, isDone: false }
@@ -100,18 +100,12 @@ export default function TodoContent() {
   }
 
   function handleChangeTodo(nextTodo) {
-    if (nextTodo.isDone) {
-      setDoneCount(doneCount + 1);
-    } else {
-      setDoneCount(doneCount - 1);
-    }
     setTodos(todos.map(prevTodo => (
       prevTodo.id === nextTodo.id ? nextTodo : prevTodo
     )));
   }
 
   function handleDeleteTodo(todoId) {
-    setTotal(total - 1);
     setTodos(todos.filter(prevTodo => prevTodo.id !== todoId));
   }
 
