@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 //TodoAccordion.jsx
-import { useState } from 'react';
-import {initialContent} from './NotProblem';
+import { useState } from "react";
+import { initialContent } from "./NotProblem";
 
 // 문제 3.
 // TodoPanel이 한번에 하나만 열리도록 수정해주세요.
@@ -10,33 +11,35 @@ import {initialContent} from './NotProblem';
 // 3. 상위 컴포넌트에서 정의한 이벤트 핸들러와 활성 여부를 TodoPanel 컴포넌트로 전달합니다.
 
 export default function TodoAccordion() {
+  const [openIndex, setIsOpenIndex] = useState(0);
+  console.log("init", initialContent);
   return (
-    <div style={{ marginTop: "50px"}}>
+    <div style={{ marginTop: "50px" }}>
       <h2 style={{ textAlign: "center" }}>이전 Todo List</h2>
-      {
-        initialContent.map((content, index) => (
-          <TodoPanel 
-            key={index} 
-            title={content.title}
-          >
-            {content.content}
-          </TodoPanel>
-        ))
-      }
+      {initialContent.map((content, index) => (
+        <TodoPanel
+          setIsOpenIndex={setIsOpenIndex}
+          openIndex={openIndex}
+          key={index}
+          idx={index}
+          title={content.title}
+        >
+          {content.content}
+        </TodoPanel>
+      ))}
     </div>
-  )
+  );
 }
 
-function TodoPanel({title, children}) {
-  const [isOpen, setIsOpen] = useState(false);
+function TodoPanel({ idx, title, children, openIndex, setIsOpenIndex }) {
   return (
     <section className="panel">
       <h3>{title}</h3>
-      {isOpen ? (
+      {openIndex === idx ? (
         <p>{children}</p>
-      ): (
-        <button onClick={() => setIsOpen(true)}>열기</button>
+      ) : (
+        <button onClick={() => setIsOpenIndex(idx)}>열기</button>
       )}
-      </section>
-  )
+    </section>
+  );
 }
