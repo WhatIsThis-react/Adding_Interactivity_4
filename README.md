@@ -20,20 +20,23 @@ TodoHeader의 색상이 올바르게 업데이트되도록 수정해주세요. <
 💡힌트: 필요 없는 state는 제거하세요. <br>
 <hr>
 
-### 문제 2
+<details>
+  <summary>과거 문제 2</summary>
 <img width="384" alt="image" src="https://github.com/user-attachments/assets/94b3d0e1-124d-4fa7-bc5c-22b3313a4512"> <br>
 TodoItem의 별 버튼 클릭 시, 해당 TodoItem의 highlight 상태가 잠시 적용되지 않아요. 클릭 시에도 highlight 상태가 적용되도록 수정해주세요! <br>
 💡힌트: 중복되는 state를 제거하고, 해당 state를 id로 관리하세요. <br>
 💡힌트2: TodoList, TodoItem 컴포넌트 둘 다 수정하세요. <br>
 <hr>
+</details>
 
-### 문제 3
+
+### 문제 2
 <img width="352" alt="image" src="https://github.com/user-attachments/assets/128effb9-4a34-4528-8b79-a09aefa47cb6"> <br>
 todo를 삭제했을 때 total과 doneCount가 올바르게 업데이트되지 않아요. total, doneCount가 올바르게 업데이트되도록 수정해주세요! <br>
 💡힌트: 필요 없는 state는 제거하고, 필요한 값은 바로 사용하세요.<br>
 <hr>
 
-### 문제 4
+### 문제 3
 <img width="360" alt="image" src="https://github.com/user-attachments/assets/c8184187-7f55-4ba6-98bc-43df2462a40f"> <br>
 TodoPanel이 한번에 하나만 열리도록 수정해주세요. <br>
 💡힌트 : 다음 단계들을 거쳐 수정할 수 있어요. <br>
