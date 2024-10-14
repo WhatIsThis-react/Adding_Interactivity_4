@@ -3,7 +3,11 @@
 ## ✏️학습목표
 5주차 공식문서 내용 복습하기
 - State 구조 선택하기
-- 컴포넌트 간 State 공유하기
+- 컴포넌트 간 State 공유하기<br>
+
+https://ko.react.dev/learn/choosing-the-state-structure
+
+<br>
 
 ## 📋과제 설명
 **TodoHeader.jsx, TodoContent.jsx, TodoAccordion.jsx 파일을 올바르게 수정해주세요.**
