@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import {initialContent} from './NotProblem';
 
-// 문제 4.
+// 문제 3.
 // TodoPanel이 한번에 하나만 열리도록 수정해주세요.
 // 힌트 : 다음 단계들을 거쳐 수정할 수 있어요.
 // 1. TodoPanel 컴포넌트의 state를 제거합니다.

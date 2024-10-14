@@ -17,10 +17,9 @@ export default function App() {
       </p>
       {/* 1. Header의 색상 올바르게 업데이트하기 */}
       <TodoHeader color={color} />
-      {/* 2. TodoItem의 hover, focus 올바르게 적용하기 */}
-      {/* 3. TodoContent의 카운터 올바르게 업데이트하기 */}
+      {/* 2. TodoContent의 카운터 올바르게 업데이트하기 */}
       <TodoContent />
-      {/* 4. TodoContent가 한 번에 하나의 패널만 열리게 변경 */}
+      {/* 3. TodoContent가 한 번에 하나의 패널만 열리게 변경 */}
       <TodoAccordion />
     </div>
   );

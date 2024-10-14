@@ -24,6 +24,81 @@ export function AddTodo({ onAddTodo }) {
   )
 }
 
+export function TodoList({
+  todos,
+  setTodos,
+  onChangeTodo,
+  onDeleteTodo
+}) {
+  const [highlightedTodo, setHighlightedTodo] = useState(null);
+
+  function handleHover(todo) {
+    setHighlightedTodo(todo);
+  }
+
+  function handleStar(starredTodo) {
+    setTodos(todos.map(prevTodo => {
+      if (prevTodo.id === starredTodo.id) {
+        return {
+          ...prevTodo,
+          isStarred: !prevTodo.isStarred
+        }
+      }
+      return prevTodo;
+    }))
+  } 
+
+  return (
+    <ul>
+      {todos.map(todo => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onChangeTodo={onChangeTodo}
+          onDeleteTodo={onDeleteTodo}
+          isHighlighted={highlightedTodo === todo}
+          onHover={handleHover}
+          onToggleStar={handleStar}
+        />
+      ))}
+    </ul>
+  );
+}
+
+function TodoItem({todo, isHighlighted, onHover, onToggleStar, onChangeTodo, onDeleteTodo}) {
+  return (
+    <li 
+      key={todo.id}
+      className={
+        isHighlighted ? 'highlighted' : ''
+      }
+      onFocus={() => {onHover(todo)}}
+      onPointerMove={() => {onHover(todo)}}
+      >
+    <label>
+      <input
+        type="checkbox"
+        checked={todo.isDone}
+        onChange={e => {
+          onChangeTodo({
+            ...todo,
+            isDone: e.target.checked
+          });
+        }}
+      />
+      {' '}
+      {todo.title}
+    </label>
+    <button onClick={() => onToggleStar(todo)}> 
+      {todo.isStarred ? '★' : '☆'}
+    </button>
+    <button onClick={() => onDeleteTodo(todo.id)}>
+      X
+    </button>
+  </li>
+  )
+}
+
 export const initialContent = [
   {
     title: "2024.10.12.토",
@@ -34,3 +109,4 @@ export const initialContent = [
     content: "1. LG U+ 하반기 신입사원 공채 지원\n2. 프로그래머스 고득점 Kit 1문제 풀기"
   }
 ];
+
