@@ -10,6 +10,12 @@ import {initialContent} from './NotProblem';
 // 3. 상위 컴포넌트에서 정의한 이벤트 핸들러와 활성 여부를 TodoPanel 컴포넌트로 전달합니다.
 
 export default function TodoAccordion() {
+  //2,3
+  const [openIndex, setOpenIndex] = useState(null); 
+
+  const handleTogglePanel = (index) => {
+    setOpenIndex(openIndex === index ? null : index); 
+  };
   return (
     <div style={{ marginTop: "50px"}}>
       <h2 style={{ textAlign: "center" }}>이전 Todo List</h2>
@@ -18,6 +24,8 @@ export default function TodoAccordion() {
           <TodoPanel 
             key={index} 
             title={content.title}
+            isOpen={openIndex === index} 
+            onToggle={() => handleTogglePanel(index)} 
           >
             {content.content}
           </TodoPanel>
@@ -27,16 +35,16 @@ export default function TodoAccordion() {
   )
 }
 
-function TodoPanel({title, children}) {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <section className="panel">
-      <h3>{title}</h3>
-      {isOpen ? (
-        <p>{children}</p>
-      ): (
-        <button onClick={() => setIsOpen(true)}>열기</button>
-      )}
-      </section>
-  )
+function TodoPanel({title, children,isOpen,onToggle}) {
+ // const [isOpen, setIsOpen] = useState(false);
+ return (
+  <section className="panel">
+    <h3 onClick={onToggle}>{title}</h3> 
+    {isOpen ? (
+      <p>{children}</p>
+    ) : (
+      <button onClick={onToggle}>열기</button> 
+    )}
+  </section>
+);
 }

@@ -8,11 +8,13 @@ import { initialTodos, AddTodo, TodoList } from './NotProblem';
 // 힌트: 필요 없는 state는 제거하고, 필요한 값은 바로 사용하세요.
 export default function TodoContent() {
   const [todos, setTodos] = useState(initialTodos);
-  const [total, setTotal] = useState(initialTodos.length);
-  const [doneCount, setDoneCount] = useState(0);
+  //const [total, setTotal] = useState(initialTodos.length);
+  const total = todos.length; 
+  //const [doneCount, setDoneCount] = useState(0);
+  const doneCount = todos.filter(todo => todo.isDone).length;
 
   function handleAddTodo(title) {
-    setTotal(total + 1);
+    //setTotal(total + 1);
     setTodos([
       ...todos,
       { id: initialTodos.length++, title: title, isDone: false }
@@ -20,18 +22,19 @@ export default function TodoContent() {
   }
 
   function handleChangeTodo(nextTodo) {
-    if (nextTodo.isDone) {
-      setDoneCount(doneCount + 1);
-    } else {
-      setDoneCount(doneCount - 1);
-    }
+    // if (nextTodo.isDone) {
+    //   setDoneCount(doneCount + 1);
+    // } else {
+    //   setDoneCount(doneCount - 1);
+    // }
+
     setTodos(todos.map(prevTodo => (
       prevTodo.id === nextTodo.id ? nextTodo : prevTodo
     )));
   }
 
   function handleDeleteTodo(todoId) {
-    setTotal(total - 1);
+    //setTotal(total - 1);
     setTodos(todos.filter(prevTodo => prevTodo.id !== todoId));
   }
 
