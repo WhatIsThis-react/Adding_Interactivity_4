@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div>
       <p>
-        오늘은? {' '}
+        오늘은?
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="red">🚨빨간불</option>
           <option value="yellow">⚠️노란불</option>
